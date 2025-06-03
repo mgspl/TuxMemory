@@ -187,4 +187,5 @@ public class MainActivity extends AbstractMainActivity implements Memory.OnMemor
     {
         drawGrid();
     }
+
 }

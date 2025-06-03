@@ -43,8 +43,8 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
 
     private static final String PREF_STARTED = "started";
     private static final int SOUND_NEW_GAME = 1000;
-    private static final int SPLASH_SCREEN_ROTATION_COUNT = 2;
-    private static final int SPLASH_SCREEN_ROTATION_DURATION = 2000;
+    private static final int SPLASH_SCREEN_ROTATION_COUNT = 0;
+    private static final int SPLASH_SCREEN_ROTATION_DURATION = 0;
     private static final int GAME_SCREEN_ROTATION_COUNT = 2;
     private static final int GAME_SCREEN_ROTATION_DURATION = 2000;
     private static final String KEY_VERSION = "version";
@@ -78,8 +78,8 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         mButtonPlay = (Button) findViewById(R.id.button_play);
         mButtonPlay.setOnClickListener(this);
 
-        ImageView image = (ImageView) findViewById(R.id.image_splash);
-        image.setImageResource(R.drawable.splash);
+        //ImageView image = (ImageView) findViewById(R.id.image_splash);
+        //image.setImageResource(R.drawable.splash);
 
         checkLastVersion();
     }
@@ -187,7 +187,11 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
     {
         if (v == mButtonPlay)
         {
-            applyRotation(0, SPLASH_SCREEN_ROTATION_COUNT * 360);
+            SoundManager.instance().playSound(SOUND_NEW_GAME);
+            mSplash.setVisibility(View.GONE);
+            getGameView().setVisibility(View.VISIBLE);
+            getGameView().requestFocus();
+            mStarted = true;
         }
     }
 
@@ -285,21 +289,21 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
 
         public void run()
         {
-            final float centerX = mContainer.getWidth() / 2.0f;
-            final float centerY = mContainer.getHeight() / 2.0f;
-            Rotate3dAnimation rotation;
+            //final float centerX = mContainer.getWidth() / 2.0f;
+            //final float centerY = mContainer.getHeight() / 2.0f;
+            //Rotate3dAnimation rotation;
 
             mSplash.setVisibility(View.GONE);
             getGameView().setVisibility(View.VISIBLE);
             getGameView().requestFocus();
 
-            rotation = new Rotate3dAnimation(0, 360 * GAME_SCREEN_ROTATION_COUNT, centerX, centerY, 310.0f, false);
+            //rotation = new Rotate3dAnimation(0, 360 * GAME_SCREEN_ROTATION_COUNT, centerX, centerY, 310.0f, false);
 
-            rotation.setDuration(GAME_SCREEN_ROTATION_DURATION);
-            rotation.setFillAfter(true);
-            rotation.setInterpolator(new DecelerateInterpolator());
+            //rotation.setDuration(GAME_SCREEN_ROTATION_DURATION);
+            //rotation.setFillAfter(true);
+            //rotation.setInterpolator(new DecelerateInterpolator());
 
-            mContainer.startAnimation(rotation);
+            //mContainer.startAnimation(rotation);
             mStarted = true;
         }
     }

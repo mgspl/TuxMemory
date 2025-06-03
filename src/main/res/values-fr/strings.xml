@@ -29,7 +29,6 @@
     <string name="credits_menu">A propos</string>
     <string name="credits_app_name">Tux Memory Game</string>
     <string name="credits_current_version">Version 1.3.0</string>
-    
-    <string name="image_splash">Splash logo</string>
+
 
 </resources>

@@ -1,33 +1,55 @@
-apply plugin: 'com.android.application'
-
-dependencies {
-    compile fileTree( dir: 'libs', include:'*.jar' )
-}
-
+//apply plugin: 'com.android.application'
 buildscript {
     repositories {
+        google()
+        //jcenter()
+        gradlePluginPortal()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:0.12.2'
+        classpath 'com.android.tools.build:gradle:8.9.3'
     }
 }
 
-repositories {
-    mavenCentral()
+plugins {
+    id 'com.android.application' version '8.9.3' apply true
+    id 'com.android.library' version '8.9.3' apply false
+    id 'org.jetbrains.kotlin.android' version '2.1.20' apply false
 }
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
 
 android {
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
-    
-    lintOptions {
-        enable 'UnusedIds', 'EasterEgg' //, 'NewerVersionAvailable'
+    namespace = 'org.androidsoft.games.memory.tux'
+    compileSdk = 35
+    buildToolsVersion "35.0.1"
+    buildFeatures.buildConfig = false
+    defaultConfig {
+        minSdkVersion 19
+        targetSdkVersion 35
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_21
+        targetCompatibility JavaVersion.VERSION_21
     }
 
-    apply from: 'sign.gradle'
+    sourceSets {
+        main {
+            res.srcDirs = [ 'src\\main\\res']
+        }
+    }
 }
+dependencies {
+    implementation fileTree( dir: 'libs', include:'*.jar' )
+}
+
+
 
 
 
