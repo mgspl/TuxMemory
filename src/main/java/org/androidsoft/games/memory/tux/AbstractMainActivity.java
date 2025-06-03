@@ -150,18 +150,21 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId())
-        {
-            case R.id.menu_new:
-                onNewGame();
-                return true;
-            case R.id.menu_quit:
-                quit();
-                return true;
-            case R.id.menu_credits:
-                about();
-                return true;
+        if (item.getItemId() == R.id.menu_new){
+            onNewGame();
+            return true;
         }
+
+        if (item.getItemId() == R.id.menu_quit){
+            quit();
+            return true;
+        }
+
+        if (item.getItemId() == R.id.menu_credits) {
+            about();
+            return true;
+        }
+
         return false;
     }
 

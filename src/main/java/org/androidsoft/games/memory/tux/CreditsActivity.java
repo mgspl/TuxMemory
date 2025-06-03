@@ -88,11 +88,9 @@ public class CreditsActivity  extends Activity
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
-        switch (item.getItemId())
-        {
-            case R.id.menu_close:
-                this.finish();
-                return true;
+        if (item.getItemId() == R.id.menu_close){
+            this.finish();
+            return true;
         }
         return false;
     }
