@@ -40,14 +40,6 @@ public class CreditsActivity  extends Activity
     public void onCreate(Bundle icicle)
     {
         super.onCreate(icicle);
-
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.HONEYCOMB)
-        {
-            requestWindowFeature(Window.FEATURE_NO_TITLE);
-            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-
         View view = new CreditsView( this , getCreditsParams() );
         setContentView( view );
 
