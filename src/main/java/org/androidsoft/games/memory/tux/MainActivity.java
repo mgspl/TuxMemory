@@ -27,7 +27,6 @@ import java.text.MessageFormat;
 public class MainActivity extends AbstractMainActivity implements Memory.OnMemoryListener
 {
 
-    private static final String PREF_BEST_MOVE_COUNT = "best_move_count";
     private static final int[] tiles =
     {
         R.drawable.item_1, R.drawable.item_2,
@@ -126,14 +125,14 @@ public class MainActivity extends AbstractMainActivity implements Memory.OnMemor
     {
         SharedPreferences prefs = getPreferences(0);
 
-        return prefs.getInt(PREF_BEST_MOVE_COUNT, 100);
+        return prefs.getInt(Constants.PREF_BEST_MOVE_COUNT, 100);
 
     }
 
     private void setBestMoveCount(int nMoveCount)
     {
         SharedPreferences.Editor editor = getPreferences(0).edit();
-        editor.putInt(PREF_BEST_MOVE_COUNT, nMoveCount);
+        editor.putInt(Constants.PREF_BEST_MOVE_COUNT, nMoveCount);
         editor.apply();
     }
 

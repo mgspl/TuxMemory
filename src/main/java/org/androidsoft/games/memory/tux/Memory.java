@@ -25,17 +25,6 @@ import org.androidsoft.games.utils.sound.SoundManager;
  */
 public class Memory
 {
-    private static final int SOUND_FAILED = 2000;
-    private static final int SOUND_SUCCEED = 2001;
-
-    private static final String PREF_LIST = "list";
-    private static final String PREF_MOVE_COUNT = "move_count";
-    private static final String PREF_SELECTED_COUNT = "seleted_count";
-    private static final String PREF_FOUND_COUNT = "found_count";
-    private static final String PREF_LAST_POSITION = "last_position";
-    private static final int MAX_TILES_PER_ROW = 6;
-    private static final int MIN_TILES_PER_ROW = 4;
-    private static final int SET_SIZE = (MAX_TILES_PER_ROW * MIN_TILES_PER_ROW ) / 2;
     private int mSelectedCount;
     private int mMoveCount;
     private int mFoundCount;
@@ -60,17 +49,17 @@ public class Memory
 
     void onResume(SharedPreferences prefs)
     {
-        String serialized = prefs.getString(PREF_LIST, null);
+        String serialized = prefs.getString(Constants.PREF_LIST, null);
         if (serialized != null)
         {
             mList = new TileList(serialized);
-            mMoveCount = prefs.getInt(PREF_MOVE_COUNT, 0);
+            mMoveCount = prefs.getInt(Constants.PREF_MOVE_COUNT, 0);
             ArrayList<Tile> list = mList.getSelected();
             mSelectedCount = list.size();
             mT1 = (mSelectedCount > 0) ? list.get(0) : null;
             mT2 = (mSelectedCount > 1) ? list.get(1) : null;
-            mFoundCount = prefs.getInt(PREF_FOUND_COUNT, 0);
-            mLastPosition = prefs.getInt(PREF_LAST_POSITION, -1);
+            mFoundCount = prefs.getInt(Constants.PREF_FOUND_COUNT, 0);
+            mLastPosition = prefs.getInt(Constants.PREF_LAST_POSITION, -1);
 
         }
 
@@ -83,18 +72,18 @@ public class Memory
         if (!quit)
         {
             // Paused without quit - save state
-            editor.putString(PREF_LIST, mList.serialize());
-            editor.putInt(PREF_MOVE_COUNT, mMoveCount);
-            editor.putInt(PREF_SELECTED_COUNT, mSelectedCount);
-            editor.putInt(PREF_FOUND_COUNT, mFoundCount);
-            editor.putInt(PREF_LAST_POSITION, mLastPosition);
+            editor.putString(Constants.PREF_LIST, mList.serialize());
+            editor.putInt(Constants.PREF_MOVE_COUNT, mMoveCount);
+            editor.putInt(Constants.PREF_SELECTED_COUNT, mSelectedCount);
+            editor.putInt(Constants.PREF_FOUND_COUNT, mFoundCount);
+            editor.putInt(Constants.PREF_LAST_POSITION, mLastPosition);
         } else
         {
-            editor.remove(PREF_LIST);
-            editor.remove(PREF_MOVE_COUNT);
-            editor.remove(PREF_SELECTED_COUNT);
-            editor.remove(PREF_FOUND_COUNT);
-            editor.remove(PREF_LAST_POSITION);
+            editor.remove(Constants.PREF_LIST);
+            editor.remove(Constants.PREF_MOVE_COUNT);
+            editor.remove(Constants.PREF_SELECTED_COUNT);
+            editor.remove(Constants.PREF_FOUND_COUNT);
+            editor.remove(Constants.PREF_LAST_POSITION);
         }
         editor.apply();
     }
@@ -102,16 +91,6 @@ public class Memory
     int getCount()
     {
         return mList.size();
-    }
-    
-    public int getMaxTilesPerRow()
-    {
-        return MAX_TILES_PER_ROW;
-    }
-
-    public int getMinTilesPerRow()
-    {
-        return MIN_TILES_PER_ROW;
     }
 
     int getResId(int position)
@@ -132,8 +111,8 @@ public class Memory
 
     private void initSounds()
     {
-        SoundManager.instance().addSound( SOUND_FAILED , R.raw.failed );
-        SoundManager.instance().addSound( SOUND_SUCCEED , R.raw.succeed );
+        SoundManager.instance().addSound( Constants.SOUND_FAILED , R.raw.failed );
+        SoundManager.instance().addSound( Constants.SOUND_SUCCEED , R.raw.succeed );
         for( int i = 0 ; i < mSounds.length ; i++ )
         {
             SoundManager.instance().addSound( i , mSounds[i] );
@@ -174,11 +153,11 @@ public class Memory
                     mT1.setFound(true);
                     mT2.setFound(true);
                     mFoundCount += 2;
-                    SoundManager.instance().playSound( SOUND_SUCCEED );
+                    SoundManager.instance().playSound( Constants.SOUND_SUCCEED );
                 }
                 else
                 {
-//                    SoundManager.instance().playSound( SOUND_FAILED );
+//                    SoundManager.instance().playSound( Constants.SOUND_FAILED );
                 }
                 break;
 
@@ -236,7 +215,7 @@ public class Memory
     {
         List<Integer> list = new ArrayList<Integer>();
 
-        while (list.size() < SET_SIZE)
+        while (list.size() < Constants.SET_SIZE)
         {
             int n = rand(mTiles.length);
             int t = mTiles[n];

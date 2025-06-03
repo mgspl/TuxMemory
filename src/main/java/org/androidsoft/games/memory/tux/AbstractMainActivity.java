@@ -36,15 +36,6 @@ import org.androidsoft.games.utils.sound.SoundManager;
  */
 public abstract class AbstractMainActivity extends Activity implements OnClickListener
 {
-
-    private static final String PREF_STARTED = "started";
-    private static final int SOUND_NEW_GAME = 1000;
-    private static final int SPLASH_SCREEN_ROTATION_COUNT = 0;
-    private static final int SPLASH_SCREEN_ROTATION_DURATION = 0;
-    private static final int GAME_SCREEN_ROTATION_COUNT = 2;
-    private static final int GAME_SCREEN_ROTATION_DURATION = 2000;
-    private static final String KEY_VERSION = "version";
-    private static final int DEFAULT_VERSION = 1;  // should be set to 0 after 1.4
     protected boolean mQuit;
     private ViewGroup mContainer;
     private View mSplash;
@@ -89,7 +80,7 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         super.onResume();
 
         SharedPreferences prefs = getPreferences(0);
-        mStarted = prefs.getBoolean(PREF_STARTED, false);
+        mStarted = prefs.getBoolean(Constants.PREF_STARTED, false);
         if (mStarted)
         {
             mSplash.setVisibility(View.GONE);
@@ -104,7 +95,7 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         {
             SoundManager.init(this);
         }
-        SoundManager.instance().addSound(SOUND_NEW_GAME, R.raw.new_game);
+        SoundManager.instance().addSound(Constants.SOUND_NEW_GAME, R.raw.new_game);
     }
 
     /**
@@ -118,10 +109,10 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         SharedPreferences.Editor editor = getPreferences(0).edit();
         if (!mQuit)
         {
-            editor.putBoolean(PREF_STARTED, mStarted);
+            editor.putBoolean(Constants.PREF_STARTED, mStarted);
         } else
         {
-            editor.remove(PREF_STARTED);
+            editor.remove(Constants.PREF_STARTED);
         }
         editor.apply();
 
@@ -166,7 +157,7 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
 
     private void onNewGame()
     {
-        SoundManager.instance().playSound(SOUND_NEW_GAME);
+        SoundManager.instance().playSound(Constants.SOUND_NEW_GAME);
         newGame();
     }
 
@@ -186,7 +177,7 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
     {
         if (v == mButtonPlay)
         {
-            SoundManager.instance().playSound(SOUND_NEW_GAME);
+            SoundManager.instance().playSound(Constants.SOUND_NEW_GAME);
             mSplash.setVisibility(View.GONE);
             getGameView().setVisibility(View.VISIBLE);
             getGameView().requestFocus();
@@ -244,7 +235,7 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
                 resMessage = R.string.whats_new_dialog_message;
             }
             // show what's new message
-            saveVersion(Constants.VERSION);
+            saveVersion();
             showWhatsNewDialog(resTitle, resMessage, R.drawable.icon);
         }
     }
@@ -252,14 +243,14 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
     private int getVersion()
     {
         SharedPreferences prefs = getSharedPreferences(AbstractMainActivity.class.getName(), Activity.MODE_PRIVATE);
-        return prefs.getInt(KEY_VERSION, DEFAULT_VERSION);
+        return prefs.getInt(Constants.KEY_VERSION, Constants.DEFAULT_VERSION);
     }
 
-    private void saveVersion(int version)
+    private void saveVersion()
     {
         SharedPreferences prefs = getSharedPreferences(AbstractMainActivity.class.getName(), Activity.MODE_PRIVATE);
         Editor editor = prefs.edit();
-        editor.putInt(KEY_VERSION, version);
+        editor.putInt(Constants.KEY_VERSION, Constants.VERSION);
         editor.apply();
 
     }

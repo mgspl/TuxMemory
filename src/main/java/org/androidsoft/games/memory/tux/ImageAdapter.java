@@ -39,20 +39,20 @@ public class ImageAdapter extends BaseAdapter
 
         if (width > height)
         {
-            mTileSize = getTileSize(width, height, memory.getMaxTilesPerRow(), memory.getMinTilesPerRow(), margin);
+            mTileSize = getTileSize(width, height, margin);
         } else
         {
-            mTileSize = getTileSize(height, width, memory.getMaxTilesPerRow(), memory.getMinTilesPerRow(), margin);
+            mTileSize = getTileSize(height, width, margin);
 
         }
 
     }
 
-    private int getTileSize(int max, int min, int countMax, int countMin, int margin)
+    private int getTileSize(int max, int min, int margin)
     {
-        int a = max / countMax;
-        int b = min / countMin;
-        return ((a < b) ? a : b ) - margin;
+        int a = max / Constants.MAX_TILES_PER_ROW;
+        int b = min / Constants.MIN_TILES_PER_ROW;
+        return (Math.min(a, b)) - margin;
     }
 
     public int getCount()

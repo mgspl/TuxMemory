@@ -21,5 +21,27 @@ package org.androidsoft.games.memory.tux;
  */
 public class Constants
 {
+    // Version Related
     final static int VERSION = 7;
+    final static String KEY_VERSION = "version";
+    final static int DEFAULT_VERSION = 1;
+
+    // Prefs
+    final static String PREF_STARTED = "started";
+    final static String PREF_BEST_MOVE_COUNT = "best_move_count";
+    static final String PREF_LIST = "list";
+    static final String PREF_MOVE_COUNT = "move_count";
+    static final String PREF_SELECTED_COUNT = "seleted_count";
+    static final String PREF_FOUND_COUNT = "found_count";
+    static final String PREF_LAST_POSITION = "last_position";
+
+    // Tile size
+    static final int MAX_TILES_PER_ROW = 6;
+    static final int MIN_TILES_PER_ROW = 4;
+    static final int SET_SIZE = (Constants.MAX_TILES_PER_ROW * Constants.MIN_TILES_PER_ROW ) / 2;
+
+    // Sounds
+    final static int SOUND_NEW_GAME = 1000;
+    final static int SOUND_FAILED = 2000;
+    static final int SOUND_SUCCEED = 2001;
 }
