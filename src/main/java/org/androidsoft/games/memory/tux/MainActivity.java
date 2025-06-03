@@ -43,7 +43,7 @@ public class MainActivity extends AbstractMainActivity implements Memory.OnMemor
     {
         R.drawable.not_found_1, R.drawable.not_found_2
     };
-    private Memory mMemory = new Memory(tiles, this);
+    private final Memory mMemory = new Memory(tiles, this);
     private int mNotFoundResId;
     private MemoryGridView mGridView;
 
@@ -151,7 +151,7 @@ public class MainActivity extends AbstractMainActivity implements Memory.OnMemor
      */
     private void initGrid()
     {
-        mGridView = (MemoryGridView) findViewById(R.id.gridview);
+        mGridView = findViewById(R.id.gridview);
         mGridView.setMemory(mMemory);
     }
 

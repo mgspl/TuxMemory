@@ -33,9 +33,9 @@ public class Memory
     private Tile mT2;
     private static TileList mList = new TileList();
     private static int[] mTiles;
-    private OnMemoryListener mListener;
+    private final OnMemoryListener mListener;
     
-    private static int[] mSounds = {
+    private static final int[] mSounds = {
       R.raw.blop, R.raw.chime, R.raw.chtoing, R.raw.tic, R.raw.toc, 
       R.raw.toing, R.raw.toing2, R.raw.toing3, R.raw.toing4, R.raw.toing5,
       R.raw.toing6, R.raw.toong, R.raw.tzirlup, R.raw.whiipz
@@ -155,10 +155,11 @@ public class Memory
                     mFoundCount += 2;
                     SoundManager.instance().playSound( Constants.SOUND_SUCCEED );
                 }
-                else
+                // Quebra o final do jogo
+                /*else
                 {
 //                    SoundManager.instance().playSound( Constants.SOUND_FAILED );
-                }
+                }*/
                 break;
 
             case 2:
@@ -213,7 +214,7 @@ public class Memory
 
     private List<Integer> getTileSet()
     {
-        List<Integer> list = new ArrayList<Integer>();
+        List<Integer> list = new ArrayList<>();
 
         while (list.size() < Constants.SET_SIZE)
         {

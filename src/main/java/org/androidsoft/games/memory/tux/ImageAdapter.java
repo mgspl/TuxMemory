@@ -28,9 +28,9 @@ import android.widget.ImageView;
 public class ImageAdapter extends BaseAdapter
 {
 
-    private Context mContext;
-    private int mTileSize;
-    private Memory mMemory;
+    private final Context mContext;
+    private final int mTileSize;
+    private final Memory mMemory;
 
     public ImageAdapter(Context c, int width, int height, int margin , Memory memory )
     {

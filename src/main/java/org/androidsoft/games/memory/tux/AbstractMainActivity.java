@@ -37,7 +37,6 @@ import org.androidsoft.games.utils.sound.SoundManager;
 public abstract class AbstractMainActivity extends Activity implements OnClickListener
 {
     protected boolean mQuit;
-    private ViewGroup mContainer;
     private View mSplash;
     private Button mButtonPlay;
     private boolean mStarted;
@@ -59,10 +58,10 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         SoundManager.init(AbstractMainActivity.this);
 
         setContentView(R.layout.main);
-        mContainer = (ViewGroup) findViewById(R.id.container);
-        mSplash = (View) findViewById(R.id.splash);
+        ViewGroup mContainer = findViewById(R.id.container);
+        mSplash = findViewById(R.id.splash);
 
-        mButtonPlay = (Button) findViewById(R.id.button_play);
+        mButtonPlay = findViewById(R.id.button_play);
         mButtonPlay.setOnClickListener(this);
 
         //ImageView image = (ImageView) findViewById(R.id.image_splash);
@@ -193,24 +192,12 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         builder.setMessage(message);
         builder.setCancelable(false);
         builder.setPositiveButton(getString(R.string.new_game),
-                new DialogInterface.OnClickListener()
-                {
-
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        dialog.cancel();
-                        onNewGame();
-                    }
+                (dialog, id) -> {
+                    dialog.cancel();
+                    onNewGame();
                 });
         builder.setNegativeButton(getString(R.string.quit),
-                new DialogInterface.OnClickListener()
-                {
-
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        quit();
-                    }
-                });
+                (dialog, id) -> quit());
         AlertDialog alert = builder.create();
         alert.show();
 
@@ -262,14 +249,9 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         builder.setIcon(icon);
         builder.setMessage(message);
         builder.setPositiveButton(getString(R.string.ok),
-                new DialogInterface.OnClickListener()
-                {
-
-                    public void onClick(DialogInterface dialog, int id)
-                    {
-                        dialog.cancel();
-                        onNewGame();
-                    }
+                (dialog, id) -> {
+                    dialog.cancel();
+                    onNewGame();
                 });
         AlertDialog alert = builder.create();
         alert.show();
