@@ -15,6 +15,8 @@
 package org.androidsoft.games.memory.tux;
 
 import android.content.SharedPreferences;
+import android.os.CountDownTimer;
+import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import org.androidsoft.games.utils.sound.SoundManager;
@@ -34,7 +36,8 @@ public class Memory
     private static TileList mList = new TileList();
     private static int[] mTiles;
     private final OnMemoryListener mListener;
-    
+    public CountDownTimer cTimer = null;
+
     private static final int[] mSounds = {
       R.raw.blop, R.raw.chime, R.raw.chtoing, R.raw.tic, R.raw.toc, 
       R.raw.toing, R.raw.toing2, R.raw.toing3, R.raw.toing4, R.raw.toing5,
@@ -127,11 +130,33 @@ public class Memory
         void onUpdateView();
     }
 
-    void onPosition(int position)
-    {
+    void startTimer() {
+        cTimer = new CountDownTimer(4000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                //SoundManager.instance().playSound( Constants.SOUND_FAILED );
+            }
+            public void onFinish() {
+                mT1.unselect();
+                if ( mSelectedCount > 1 ){mT2.unselect();}
+                mSelectedCount = 0;
+                SoundManager.instance().playSound( Constants.SOUND_FAILED );
+                mLastPosition = -1;
+                mMoveCount++;
+                updateView();
+                checkComplete();
+            }
+        };
+        cTimer.start();
+    }
+
+    public void cancelTimer() {
+        if(cTimer != null)
+            cTimer.cancel();
+    }
+
+    void onPosition(int position) {
         if (position == mLastPosition)
         {
-            // Same item clicked
             return;
         }
         mLastPosition = position;
@@ -139,6 +164,8 @@ public class Memory
         tile.select();
         int sound = tile.mResId % mSounds.length;
         SoundManager.instance().playSound( sound );
+        cancelTimer();
+        startTimer();
 
         switch (mSelectedCount)
         {
@@ -154,12 +181,8 @@ public class Memory
                     mT2.setFound(true);
                     mFoundCount += 2;
                     SoundManager.instance().playSound( Constants.SOUND_SUCCEED );
+                    mMoveCount++;
                 }
-                // Quebra o final do jogo
-                /*else
-                {
-//                    SoundManager.instance().playSound( Constants.SOUND_FAILED );
-                }*/
                 break;
 
             case 2:
@@ -170,10 +193,11 @@ public class Memory
                 }
                 mSelectedCount = 0;
                 mT1 = tile;
+                mMoveCount++;
+                SoundManager.instance().playSound( Constants.SOUND_FAILED );
                 break;
         }
         mSelectedCount++;
-        mMoveCount++;
         updateView();
         checkComplete();
     }
@@ -187,6 +211,7 @@ public class Memory
     {
         if (mFoundCount == mList.size())
         {
+            cancelTimer();
             mListener.onComplete(mMoveCount);
         }
     }

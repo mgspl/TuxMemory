@@ -31,21 +31,14 @@ public class MemoryGridView extends GridView
     private Memory mMemory;
     private Context mContext;
 
-    public MemoryGridView(Context context)
-    {
+    public MemoryGridView(Context context)    {
         super(context);
-
         mContext = context;
-
-        setOnItemClickListener(new OnItemClickListener()
-        {
-
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
+        setOnItemClickListener(new OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id){
                 mMemory.onPosition( position );
             }
         });
-
     }
 
     public MemoryGridView (Context context, AttributeSet attrs)
