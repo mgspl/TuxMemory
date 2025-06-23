@@ -35,6 +35,7 @@ public class Memory
     private Tile mT2;
     private static TileList mList = new TileList();
     private static int[] mTiles;
+    private boolean mInfinity;
     private final OnMemoryListener mListener;
     public CountDownTimer cTimer = null;
 
@@ -44,11 +45,12 @@ public class Memory
       R.raw.toing6, R.raw.toong, R.raw.tzirlup, R.raw.whiipz
     };
 
-    public Memory(int[] tiles , OnMemoryListener listener )
+    public Memory(int[] tiles , OnMemoryListener listener)
     {
         mTiles = tiles;
         mListener = listener;
     }
+
 
     void onResume(SharedPreferences prefs)
     {
@@ -209,8 +211,7 @@ public class Memory
 
     private void checkComplete()
     {
-        if (mFoundCount == mList.size())
-        {
+        if (mFoundCount == mList.size()) {
             cancelTimer();
             mListener.onComplete(mMoveCount);
         }

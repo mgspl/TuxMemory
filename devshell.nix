@@ -13,7 +13,9 @@ in
     devshell.mkShell {
       name = "TuxMemory";
       motd = ''
-        Entered the Android app development environment.
+        Entered the TuxMemory development environment.
+
+        nohup idea-ultimate >/dev/null 2>&1 &
       '';
       env = [
         {

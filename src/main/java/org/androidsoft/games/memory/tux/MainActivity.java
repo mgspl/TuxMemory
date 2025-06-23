@@ -166,6 +166,11 @@ public class MainActivity extends AbstractMainActivity implements Memory.OnMemor
 
     public void onComplete(int countMove)
     {
+        if (Constants.mInfinityMode){
+            SoundManager.instance().playSound(Constants.SOUND_NEW_GAME);
+            newGame();
+            return;
+        }
         int nHighScore = getBestMoveCount();
         String title = getString(R.string.success_title);
         Object[] args = { countMove, nHighScore };

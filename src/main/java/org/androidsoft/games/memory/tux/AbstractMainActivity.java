@@ -39,8 +39,10 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
     protected boolean mQuit;
     private View mSplash;
     private Button mButtonPlay;
-    private boolean mStarted;
 
+    private Button mButtonPlayInfinity;
+    private boolean mStarted;
+    private boolean mStartedInfinity;
     protected abstract View getGameView();
 
     protected abstract void newGame();
@@ -64,6 +66,9 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         mButtonPlay = findViewById(R.id.button_play);
         mButtonPlay.setOnClickListener(this);
 
+        mButtonPlayInfinity = findViewById(R.id.button_play_infinity);
+        mButtonPlayInfinity.setOnClickListener(this);
+
         //ImageView image = (ImageView) findViewById(R.id.image_splash);
         //image.setImageResource(R.drawable.splash);
 
@@ -80,7 +85,8 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
 
         SharedPreferences prefs = getPreferences(0);
         mStarted = prefs.getBoolean(Constants.PREF_STARTED, false);
-        if (mStarted)
+        mStartedInfinity = prefs.getBoolean(Constants.PREF_STARTED, false);
+        if (mStarted || mStartedInfinity)
         {
             mSplash.setVisibility(View.GONE);
             getGameView().setVisibility(View.VISIBLE);
@@ -181,6 +187,17 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
             getGameView().setVisibility(View.VISIBLE);
             getGameView().requestFocus();
             mStarted = true;
+            Constants.mInfinityMode = false;
+        }
+
+        if (v == mButtonPlayInfinity)
+        {
+            SoundManager.instance().playSound(Constants.SOUND_NEW_GAME);
+            mSplash.setVisibility(View.GONE);
+            getGameView().setVisibility(View.VISIBLE);
+            getGameView().requestFocus();
+            mStartedInfinity = true;
+            Constants.mInfinityMode = true;
         }
     }
 
@@ -200,7 +217,6 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
                 (dialog, id) -> quit());
         AlertDialog alert = builder.create();
         alert.show();
-
     }
 
     private void checkLastVersion()
