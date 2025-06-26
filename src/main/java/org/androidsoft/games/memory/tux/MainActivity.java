@@ -18,6 +18,9 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+
+import org.androidsoft.games.utils.sound.SoundManager;
+
 import java.text.MessageFormat;
 
 /**
@@ -37,7 +40,12 @@ public class MainActivity extends AbstractMainActivity implements Memory.OnMemor
         R.drawable.item_19, R.drawable.item_20, R.drawable.item_21, R.drawable.item_22,
         R.drawable.item_23, R.drawable.item_24, R.drawable.item_25, R.drawable.item_26,
         R.drawable.item_27, R.drawable.item_28, R.drawable.item_29, R.drawable.item_30,
-        R.drawable.item_31, R.drawable.item_32, R.drawable.item_33
+        R.drawable.item_31, R.drawable.item_32, R.drawable.item_33, R.drawable.item_33,
+            R.drawable.item_34, R.drawable.item_35, R.drawable.item_36, R.drawable.item_37,
+            R.drawable.item_38, R.drawable.item_39, R.drawable.item_40, R.drawable.item_41,
+            R.drawable.item_42, R.drawable.item_43, R.drawable.item_44, R.drawable.item_45,
+            R.drawable.item_46, R.drawable.item_47, R.drawable.item_48, R.drawable.item_49,
+            R.drawable.item_50
     };
     private static final int[] not_found_tile_set =
     {
@@ -167,7 +175,7 @@ public class MainActivity extends AbstractMainActivity implements Memory.OnMemor
     public void onComplete(int countMove)
     {
         if (Constants.mInfinityMode){
-            SoundManager.instance().playSound(Constants.SOUND_NEW_GAME);
+            SoundManager.instance().playSound(Constants.SOUND_INFINITY);
             newGame();
             return;
         }

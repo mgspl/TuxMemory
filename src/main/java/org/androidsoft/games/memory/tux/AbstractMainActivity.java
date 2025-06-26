@@ -39,8 +39,8 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
     protected boolean mQuit;
     private View mSplash;
     private Button mButtonPlay;
-
     private Button mButtonPlayInfinity;
+    private Button mButtonCredits;
     private boolean mStarted;
     private boolean mStartedInfinity;
     protected abstract View getGameView();
@@ -60,7 +60,6 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         SoundManager.init(AbstractMainActivity.this);
 
         setContentView(R.layout.main);
-        ViewGroup mContainer = findViewById(R.id.container);
         mSplash = findViewById(R.id.splash);
 
         mButtonPlay = findViewById(R.id.button_play);
@@ -69,10 +68,14 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         mButtonPlayInfinity = findViewById(R.id.button_play_infinity);
         mButtonPlayInfinity.setOnClickListener(this);
 
-        //ImageView image = (ImageView) findViewById(R.id.image_splash);
-        //image.setImageResource(R.drawable.splash);
+        mButtonCredits = findViewById(R.id.button_credits);
+        mButtonCredits.setOnClickListener(this);
 
         checkLastVersion();
+    }
+
+    public void onBackPressed() {
+        quit();
     }
 
     /**
@@ -101,6 +104,7 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
             SoundManager.init(this);
         }
         SoundManager.instance().addSound(Constants.SOUND_NEW_GAME, R.raw.new_game);
+        SoundManager.instance().addSound(Constants.SOUND_INFINITY, R.raw.infinity);
     }
 
     /**
@@ -124,41 +128,6 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
         SoundManager.release();
     }
 
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu, menu);
-
-        return true;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if (item.getItemId() == R.id.menu_new){
-            onNewGame();
-            return true;
-        }
-
-        if (item.getItemId() == R.id.menu_quit){
-            quit();
-            return true;
-        }
-
-        if (item.getItemId() == R.id.menu_credits) {
-            about();
-            return true;
-        }
-
-        return false;
-    }
 
     private void onNewGame()
     {
@@ -199,11 +168,15 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
             mStartedInfinity = true;
             Constants.mInfinityMode = true;
         }
+
+        if (v == mButtonCredits){
+            about();
+        }
     }
 
     protected void showEndDialog(String title, String message, int icon)
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DialogTheme);
         builder.setTitle(title);
         builder.setIcon(icon);
         builder.setMessage(message);
@@ -260,7 +233,7 @@ public abstract class AbstractMainActivity extends Activity implements OnClickLi
 
     protected void showWhatsNewDialog(int title, int message, int icon)
     {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DialogTheme);
         builder.setTitle(title);
         builder.setIcon(icon);
         builder.setMessage(message);

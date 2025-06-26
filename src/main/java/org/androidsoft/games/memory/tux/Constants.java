@@ -42,6 +42,7 @@ public class Constants
 
     // Sounds
     final static int SOUND_NEW_GAME = 1000;
+    final static int SOUND_INFINITY = 1001;
     final static int SOUND_FAILED = 2000;
     static final int SOUND_SUCCEED = 2001;
 

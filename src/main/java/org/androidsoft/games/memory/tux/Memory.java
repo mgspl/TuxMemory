@@ -118,10 +118,10 @@ public class Memory
     {
         SoundManager.instance().addSound( Constants.SOUND_FAILED , R.raw.failed );
         SoundManager.instance().addSound( Constants.SOUND_SUCCEED , R.raw.succeed );
-        for( int i = 0 ; i < mSounds.length ; i++ )
+        /*for( int i = 0 ; i < mSounds.length ; i++ )
         {
             SoundManager.instance().addSound( i , mSounds[i] );
-        }
+        }*/
     }
 
     public interface OnMemoryListener
@@ -135,7 +135,6 @@ public class Memory
     void startTimer() {
         cTimer = new CountDownTimer(4000, 1000) {
             public void onTick(long millisUntilFinished) {
-                //SoundManager.instance().playSound( Constants.SOUND_FAILED );
             }
             public void onFinish() {
                 mT1.unselect();
@@ -164,8 +163,6 @@ public class Memory
         mLastPosition = position;
         Tile tile = mList.get(position);
         tile.select();
-        int sound = tile.mResId % mSounds.length;
-        SoundManager.instance().playSound( sound );
         cancelTimer();
         startTimer();
 
@@ -192,11 +189,11 @@ public class Memory
                 {
                     mT1.unselect();
                     mT2.unselect();
+                    SoundManager.instance().playSound( Constants.SOUND_FAILED );
                 }
                 mSelectedCount = 0;
                 mT1 = tile;
                 mMoveCount++;
-                SoundManager.instance().playSound( Constants.SOUND_FAILED );
                 break;
         }
         mSelectedCount++;
@@ -213,6 +210,7 @@ public class Memory
     {
         if (mFoundCount == mList.size()) {
             cancelTimer();
+            mLastPosition = -1;
             mListener.onComplete(mMoveCount);
         }
     }

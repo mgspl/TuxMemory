@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="TuxTheme" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:windowSplashScreenBackground" tools:targetApi="31">#1e1e2e</item>
+    </style>
+    <style name="DialogTheme" parent="android:Theme.Material.Light.Dialog.Alert">
+        <item name="android:colorAccent">#89b4fa</item>
+        <item name="android:textColor">#89b4fa</item>
+        <item name="android:textColorPrimary">#89b4fa</item>
+        <item name="android:colorBackground">#1e1e2e</item>
+        <item name="android:windowBackground">#1e1e2e</item>
+    </style>
+</resources>

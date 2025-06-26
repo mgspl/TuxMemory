@@ -1,55 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:id="@+id/container">
+
+    <RelativeLayout
+        android:id="@+id/splash"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/container">
+        android:layout_height="match_parent"
+        android:background="#1e1e2e"/>
 
     <LinearLayout
-            android:id="@+id/splash"
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginEnd="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="UselessParent">
 
-        <TextView android:layout_width="fill_parent"
-                  android:layout_height="wrap_content"
-                  android:gravity="center_horizontal|center_vertical"
-                  android:layout_marginBottom="10dp"
-                  android:text="@string/version"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="561dp"
+            android:layout_height="122dp"
+            android:contentDescription="@string/logo"
+            android:src="@drawable/icon" />
 
-        <LinearLayout android:orientation="horizontal"
-                      android:layout_width="fill_parent"
-                      android:layout_height="383dp"
-                      android:gravity="center_horizontal|center_vertical">
+        <View
+            android:id="@+id/divider3"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="invisible" />
 
-            <Button android:id="@+id/button_play"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:verticalSpacing="20dp"
-                    android:horizontalSpacing="20dp"
-                    android:text="@string/button_play"/>
+        <Button
+            android:id="@+id/button_play"
+            style="@android:style/Widget.Material.Button.Colored"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="#89b4fa"
+            android:fontFamily="sans-serif"
+            android:horizontalSpacing="30dp"
+            android:text="@string/button_play"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textColor="#1e1e2e"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:verticalSpacing="30dp"
+            tools:ignore="NewApi" />
 
-            <Button android:id="@+id/button_play_infinity"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:verticalSpacing="20dp"
-                    android:horizontalSpacing="20dp"
-                    android:text="@string/button_play_infinity"/>
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="invisible" />
 
-        </LinearLayout>
+        <Button
+            android:id="@+id/button_play_infinity"
+            style="@android:style/Widget.Material.Button.Colored"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="#89b4fa"
+            android:fontFamily="sans-serif"
+            android:horizontalSpacing="30dp"
+            android:lineSpacingExtra="8sp"
+            android:rotationX="0"
+            android:text="@string/button_play_infinity"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textColor="#1e1e2e"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:verticalSpacing="30dp" />
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="?android:attr/listDivider"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/button_credits"
+            style="@android:style/Widget.Material.Button.Colored"
+            android:layout_width="300dp"
+            android:layout_height="60dp"
+            android:background="#89b4fa"
+            android:fontFamily="sans-serif"
+            android:horizontalSpacing="30dp"
+            android:lineSpacingExtra="8sp"
+            android:rotationX="0"
+            android:text="@string/button_credits"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textColor="#1e1e2e"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            android:verticalSpacing="30dp" />
 
     </LinearLayout>
 
-    <view  class="org.androidsoft.games.memory.tux.MemoryGridView"
-              android:layoutAnimation="@anim/layout_random_fade"
-              android:id="@+id/gridview"
-              android:layout_width="fill_parent"
-              android:layout_height="fill_parent"
-              android:numColumns="6"
-              android:verticalSpacing="8dp"
-              android:horizontalSpacing="8dp"
-              android:stretchMode="columnWidth"
-              android:gravity="center"
-              android:visibility="gone" />
+    <view
+        android:id="@+id/gridview"
+        class="org.androidsoft.games.memory.tux.MemoryGridView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#1e1e2e"
+        android:gravity="center"
+        android:horizontalSpacing="8dp"
+        android:layoutAnimation="@anim/layout_random_fade"
+        android:numColumns="6"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="8dp"
+        android:visibility="gone" />
 
 </merge>
-

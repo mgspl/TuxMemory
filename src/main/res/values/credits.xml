@@ -2,8 +2,8 @@
 <resources>
     <array name="credits">
         <item>*by androidsoft.org</item>
-        <item>*</item>
-        <item>*</item>
+        <item>*Version 2.0 is an college project</item>
+        <item>*by Miguel Peloso</item>
         <item>*</item>
         <item>*</item>
         <item>License</item>
@@ -22,13 +22,15 @@
         <item>*</item>
         <item>*Icons come from the TuxFactory </item>
         <item>*hosted by the Crystal XP Project</item>
-        <item>*http://tux.crystalxp.net/</item>
+        <item>*https://archive.org/details/crystalxp-tux-collection/</item>
         <item>*</item>
         <item>*Tux icons</item>
         <item>*are released under</item>
         <item>*GNU Lesser General Public License</item>
         <item>*or</item>
         <item>*Creative Commons by-nc-sa</item>
+        <item>*</item>
+        <item>*The icons on 2.0 version came from Internet Archive</item>
         <item>*</item>
         <item>*</item>
         <item>*</item>
@@ -79,9 +81,9 @@
         <item>*</item>
         <item>*</item>
         <item>*</item>
-        <item>*</item>
         <item>*http://www.androidsoft.org</item>
         <item>*Copyright (c) 2011 Pierre Levy</item>
+        <item>*Acabei não alterando quase nada aqui por que não entendi o código</item>
     </array>
 </resources>
 

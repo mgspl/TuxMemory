@@ -2,19 +2,18 @@
 buildscript {
     repositories {
         google()
-        //jcenter()
         gradlePluginPortal()
         mavenCentral()
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:8.9.3'
+        classpath 'com.android.tools.build:gradle:8.10.1'
     }
 }
 
 plugins {
-    id 'com.android.application' version '8.9.3' apply true
-    id 'com.android.library' version '8.9.3' apply false
+    id 'com.android.application' version '8.10.1' apply true
+    id 'com.android.library' version '8.10.1' apply false
     id 'org.jetbrains.kotlin.android' version '2.1.20' apply false
 }
 
@@ -31,7 +30,7 @@ android {
     buildToolsVersion "35.0.1"
     buildFeatures.buildConfig = false
     defaultConfig {
-        minSdkVersion 19
+        minSdkVersion 23
         targetSdkVersion 35
     }
     compileOptions {
@@ -47,6 +46,7 @@ android {
 }
 dependencies {
     implementation fileTree( dir: 'libs', include:'*.jar' )
+    implementation "androidx.core:core-splashscreen:1.0.1"
 }
 
 

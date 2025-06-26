@@ -29,7 +29,7 @@ public class MemoryGridView extends GridView
     private static final int MARGIN = 15;
 
     private Memory mMemory;
-    private Context mContext;
+    private final Context mContext;
 
     public MemoryGridView(Context context)    {
         super(context);

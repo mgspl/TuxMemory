@@ -40,6 +40,12 @@ public class CreditsActivity  extends Activity
         View view = new CreditsView( this , getCreditsParams() );
         setContentView( view );
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        this.finish();
     }
 
     private CreditsParams getCreditsParams()
@@ -65,31 +71,6 @@ public class CreditsActivity  extends Activity
 
         return p;
 
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu)
-    {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_close, menu);
-
-        return true;
-    }
-
-    /**
-     * {@inheritDoc }
-     */
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item)
-    {
-        if (item.getItemId() == R.id.menu_close){
-            this.finish();
-            return true;
-        }
-        return false;
     }
     
 }

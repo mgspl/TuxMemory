@@ -35,9 +35,11 @@ in
           value = "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android-sdk}/share/android-sdk/build-tools/35.0.1/aapt2";
         }
       ];
-      packages = [
-        android-sdk
-        gradle
-        jdk
-      ];
+      packages =
+        [
+          android-sdk
+          gradle
+          jdk
+        ]
+        ++ conditionalPackages;
     }
