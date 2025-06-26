@@ -16,8 +16,6 @@ package org.androidsoft.games.memory.tux;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.GridView;
 
 /**
@@ -34,39 +32,21 @@ public class MemoryGridView extends GridView
     public MemoryGridView(Context context)    {
         super(context);
         mContext = context;
-        setOnItemClickListener(new OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id){
-                mMemory.onPosition( position );
-            }
-        });
+        setOnItemClickListener((parent, v, position, id) -> mMemory.onPosition( position ));
     }
 
     public MemoryGridView (Context context, AttributeSet attrs)
     {
         super( context , attrs );
         mContext = context;
-        setOnItemClickListener(new OnItemClickListener()
-        {
-
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
-                mMemory.onPosition( position );
-            }
-        });
+        setOnItemClickListener((parent, v, position, id) -> mMemory.onPosition( position ));
     }
 
     public MemoryGridView (Context context, AttributeSet attrs, int defStyle)
     {
         super( context , attrs , defStyle );
         mContext = context;
-        setOnItemClickListener(new OnItemClickListener()
-        {
-
-            public void onItemClick(AdapterView<?> parent, View v, int position, long id)
-            {
-                mMemory.onPosition( position );
-            }
-        });
+        setOnItemClickListener((parent, v, position, id) -> mMemory.onPosition( position ));
     }
 
 

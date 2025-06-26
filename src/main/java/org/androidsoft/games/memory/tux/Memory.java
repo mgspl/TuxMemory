@@ -16,7 +16,6 @@ package org.androidsoft.games.memory.tux;
 
 import android.content.SharedPreferences;
 import android.os.CountDownTimer;
-import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 import org.androidsoft.games.utils.sound.SoundManager;
@@ -35,22 +34,14 @@ public class Memory
     private Tile mT2;
     private static TileList mList = new TileList();
     private static int[] mTiles;
-    private boolean mInfinity;
     private final OnMemoryListener mListener;
     public CountDownTimer cTimer = null;
-
-    private static final int[] mSounds = {
-      R.raw.blop, R.raw.chime, R.raw.chtoing, R.raw.tic, R.raw.toc, 
-      R.raw.toing, R.raw.toing2, R.raw.toing3, R.raw.toing4, R.raw.toing5,
-      R.raw.toing6, R.raw.toong, R.raw.tzirlup, R.raw.whiipz
-    };
 
     public Memory(int[] tiles , OnMemoryListener listener)
     {
         mTiles = tiles;
         mListener = listener;
     }
-
 
     void onResume(SharedPreferences prefs)
     {
@@ -118,10 +109,6 @@ public class Memory
     {
         SoundManager.instance().addSound( Constants.SOUND_FAILED , R.raw.failed );
         SoundManager.instance().addSound( Constants.SOUND_SUCCEED , R.raw.succeed );
-        /*for( int i = 0 ; i < mSounds.length ; i++ )
-        {
-            SoundManager.instance().addSound( i , mSounds[i] );
-        }*/
     }
 
     public interface OnMemoryListener
@@ -176,8 +163,8 @@ public class Memory
                 mT2 = tile;
                 if (mT1.getResId() == mT2.getResId())
                 {
-                    mT1.setFound(true);
-                    mT2.setFound(true);
+                    mT1.setFound();
+                    mT2.setFound();
                     mFoundCount += 2;
                     SoundManager.instance().playSound( Constants.SOUND_SUCCEED );
                     mMoveCount++;

@@ -35,7 +35,7 @@ public class Constants
     static final String PREF_FOUND_COUNT = "found_count";
     static final String PREF_LAST_POSITION = "last_position";
 
-    // Tile size
+    // Memory grid size
     static final int MAX_TILES_PER_ROW = 6;
     static final int MIN_TILES_PER_ROW = 4;
     static final int SET_SIZE = (Constants.MAX_TILES_PER_ROW * Constants.MIN_TILES_PER_ROW ) / 2;

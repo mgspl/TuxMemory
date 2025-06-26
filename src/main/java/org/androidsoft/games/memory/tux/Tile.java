@@ -37,13 +37,6 @@ public class Tile
     /**
      * Constructor
      */
-    Tile()
-    {
-    }
-
-    /**
-     * Constructor
-     */
     Tile(int nResId)
     {
         mResId = nResId;
@@ -70,14 +63,9 @@ public class Tile
         mNotFoundResId = nNotFoundResId;
     }
 
-    boolean isFound()
+    void setFound()
     {
-        return mFound;
-    }
-
-    void setFound(boolean bFound)
-    {
-        mFound = bFound;
+        mFound = true;
     }
 
     int getResId()

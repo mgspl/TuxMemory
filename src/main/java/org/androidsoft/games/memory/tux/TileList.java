@@ -73,7 +73,7 @@ public class TileList extends ArrayList<Tile>
 
     ArrayList<Tile> getSelected()
     {
-        ArrayList<Tile> list = new ArrayList<Tile>();
+        ArrayList<Tile> list = new ArrayList<>();
         for (Tile t : this)
         {
             if ( t.mSelected && !t.mFound )
