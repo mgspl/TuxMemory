@@ -38,6 +38,15 @@ android {
         targetCompatibility JavaVersion.VERSION_21
     }
 
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
     sourceSets {
         main {
             res.srcDirs = [ 'src\\main\\res']
