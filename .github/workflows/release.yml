@@ -16,8 +16,8 @@ jobs:
         id: decode_keystore
         uses: timheuer/base64-to-file@v1
         with:
-          fileName: 'keystore/your_signing_keystore.jks'
-          encodedString: ${{ secrets.KEYSTORE }}
+          fileName: 'keystore/keystore.jks'
+          encodedString: ${{ secrets.KEYSTORE_JKS_BASE64 }}
 
       - uses: actions/checkout@v2
 
