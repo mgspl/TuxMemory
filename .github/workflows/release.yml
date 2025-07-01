@@ -31,12 +31,12 @@ jobs:
 
       - name: Rename APK 
         run:
-          mv "./app/build/outputs/apk/release/Tux Memory-release.apk" "./app/build/outputs/apk/release/TuxMemory.apk"
+          mv "./build/outputs/apk/release/Tux Memory-release.apk" "./build/outputs/apk/release/TuxMemory.apk"
 
       - name: Upload release APK
         uses: actions/upload-artifact@v4
         with:
           name: Tux Memory
-          path: app/build/outputs/apk/release/TuxMemory.apk
+          path: build/outputs/apk/release/TuxMemory.apk
 
           
